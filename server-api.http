@@ -1,0 +1,5 @@
+GET http://localhost:3000/goals/employee?id=2
+
+GET http://localhost:3000/goals/admin?id=2
+
+GET http://localhost:3000/goals/superadmin?id=3
