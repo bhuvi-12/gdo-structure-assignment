@@ -4,8 +4,11 @@ const port = 3000;
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const goalsRouter = require('./goals');
+const usersRouter = require('./users');
 
 app.use('/goals',goalsRouter);
+
+app.use('/users',usersRouter);
 
 
 app.listen(port, () => {

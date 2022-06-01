@@ -43,8 +43,16 @@ async function getAllGoalsOfSuperAdmin(id) {
   });
 }
 
-async function addGoalsofEmployee({name,email,password,mobile,role,createdAt,updatedAt}){
-  return Users.create({name,email,password,mobile,role,createdAt,updatedAt});
+async function addGoalsofEmployee({goal_name,status,date,user_id,createdAt,updatedAt}){
+  return Goals.create({goal_name,status,date,user_id,createdAt,updatedAt});
 }
 
-module.exports = { getAllGoalsOfEmployee, getAllGoalsOfAdmin, getAllGoalsOfSuperAdmin, addGoalsofEmployee };
+async function addGoalsofAdmin({goal_name,status,date,user_id,createdAt,updatedAt}){
+  return Goals.create({goal_name,status,date,user_id,createdAt,updatedAt});
+}
+
+async function addGoalsofSuperAdmin({goal_name,status,date,user_id,createdAt,updatedAt}){
+  return Goals.create({goal_name,status,date,user_id,createdAt,updatedAt});
+}
+
+module.exports = { getAllGoalsOfEmployee, getAllGoalsOfAdmin, getAllGoalsOfSuperAdmin, addGoalsofEmployee, addGoalsofAdmin, addGoalsofSuperAdmin };

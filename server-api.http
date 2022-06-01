@@ -1,4 +1,4 @@
-GET http://localhost:3000/goals/employee?id=4
+GET http://localhost:3000/goals/employee?id=1
 
 GET http://localhost:3000/goals/admin?id=2
 
@@ -8,11 +8,38 @@ POST http://localhost:3000/goals/employee
 Content-Type: application/json
 
 {
-    "name": "user4",
-    "email": "user4@wal.com",
-    "password": "user4@1113",
-    "mobile": "8789872345",
-    "role": "employee",
-    "createdAt": "2022-06-01",
-    "updatedAt": "2022-06-01"
+    "goal_name": "successful project delivery",
+    "status": "failed",
+    "date": "2022-02-28",
+    "user_id": 1,
+    "createdAt":"2022-06-06",
+    "updatedAt":"2022-06-06"
 }
+
+POST http://localhost:3000/goals/admin
+Content-Type: application/json
+
+{
+    "goal_name": "interview 2 candidates",
+    "status": "completed",
+    "date": "2022-1-12",
+    "user_id": 2,
+    "createdAt":"2022-06-06",
+    "updatedAt":"2022-06-06"
+}
+
+POST http://localhost:3000/goals/superadmin
+Content-Type: application/json
+
+{
+    "goal_name": "recruited 2 candidates",
+    "status": "completed",
+    "date": "2022-1-30",
+    "user_id": 3,
+    "createdAt":"2022-06-06",
+    "updatedAt":"2022-06-06"
+}
+
+GET http://localhost:3000/users/users?role=employee
+
+GET http://localhost:3000/users/users?role=admin

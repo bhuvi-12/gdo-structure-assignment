@@ -1,34 +1,6 @@
-// "use strict";
-// const { Model } = require("sequelize");
-// module.exports = (sequelize, DataTypes) => {
-//   class Goals extends Model {
-//     /**
-//      * Helper method for defining associations.
-//      * This method is not a part of Sequelize lifecycle.
-//      * The `models/index` file will call this method automatically.
-//      */
-//     static associate(models) {
-//       // define association here
-//     }
-//   }
-//   Goals.init(
-//     {
-//       id: DataTypes.INTEGER,
-//       goal: DataTypes.STRING,
-//       state: DataTypes.STRING,
-//       date: DataTypes.DATE,
-//       user_id: DataTypes.INTEGER,
-//     },
-//     {
-//       sequelize,
-//       modelName: "goals",
-//     }
-//   );
-//   return Goals;
-// };
-
 const db = require("../models/index");
 const { DataTypes } = require("sequelize");
+const Users = require("./users");
 
 const Goals = db.sequelize.define(
   "goals",
@@ -53,7 +25,16 @@ const Goals = db.sequelize.define(
     },
     user_id: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      references: {
+        model: Users,
+        key: "id",
+      }
+    },
+    createdAt:{
+      type: DataTypes.DATE
+    },
+    updatedAt:{
+      type: DataTypes.DATE
     }
   },
   {
