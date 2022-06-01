@@ -2,11 +2,11 @@ const Goals = require("../models/goals");
 const Users = require("../models/users");
 
 async function getAllGoalsOfEmployee(id) {
-  Users.belongsTo(Goals, {targetKey:'user_id', foreignKey:'user_id'});
+  Users.belongsTo(Goals, {targetKey:'user_id', foreignKey:'id'});
   return Users.findAll({
     where:{
       role:"employee",
-      user_id:id,
+      id:id,
     },
     include: {
       model: Goals,
@@ -16,11 +16,11 @@ async function getAllGoalsOfEmployee(id) {
 }
 
 async function getAllGoalsOfAdmin(id) {
-  Users.belongsTo(Goals, {targetKey:'user_id', foreignKey:'user_id'});
+  Users.belongsTo(Goals, {targetKey:'user_id', foreignKey:'id'});
   return Users.findAll({
     where:{
       role:"admin",
-      user_id:id,
+      id:id,
     },
     include: {
       model: Goals,
@@ -30,11 +30,11 @@ async function getAllGoalsOfAdmin(id) {
 }
 
 async function getAllGoalsOfSuperAdmin(id) {
-  Users.belongsTo(Goals, {targetKey:'user_id', foreignKey:'user_id'});
+  Users.belongsTo(Goals, {targetKey:'user_id', foreignKey:'id'});
   return Users.findAll({
     where:{
       role:"super_admin",
-      user_id:id,
+      id:id,
     },
     include: {
       model: Goals,
@@ -43,4 +43,8 @@ async function getAllGoalsOfSuperAdmin(id) {
   });
 }
 
-module.exports = { getAllGoalsOfEmployee, getAllGoalsOfAdmin, getAllGoalsOfSuperAdmin };
+async function addGoalsofEmployee({name,email,password,mobile,role,createdAt,updatedAt}){
+  return Users.create({name,email,password,mobile,role,createdAt,updatedAt});
+}
+
+module.exports = { getAllGoalsOfEmployee, getAllGoalsOfAdmin, getAllGoalsOfSuperAdmin, addGoalsofEmployee };

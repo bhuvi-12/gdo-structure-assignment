@@ -35,9 +35,11 @@ const Goals = require("./goals");
 const Users = db.sequelize.define(
   "users",
   {
-    user_id: {
+    id:{
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
@@ -55,9 +57,18 @@ const Users = db.sequelize.define(
       type: DataTypes.STRING,
       allowNull: false
     },
+    qualification:{
+      type: DataTypes.STRING,
+    },
     role:{
       type: DataTypes.STRING,
       allowNull: false
+    },
+    createdAt:{
+      type: DataTypes.DATE
+    },
+    updatedAt:{
+      type: DataTypes.DATE
     }
   },
   {
@@ -66,6 +77,6 @@ const Users = db.sequelize.define(
   }
 );
 
-Users.belongsTo(Goals, {foreignKey:'user_id', required:true });
+Users.belongsTo(Goals, {foreignKey:'id', required:true });
 
 module.exports = Users;

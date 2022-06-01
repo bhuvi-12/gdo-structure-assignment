@@ -16,6 +16,21 @@ router.get('/employee', jsonParser, async(req, res) => {
     }
 });
 
+router.post('/employee', jsonParser, async(req, res) => {
+    console.log(req.body);
+    try{
+        const newGoals = await goalsDao.addGoalsofEmployee(req.body)
+        res.json({
+            message: "goals inserted successfully",
+            data: newGoals
+        });
+    } catch(err){
+        res.json({
+            error: err.toString(),
+        })
+    }
+});
+
 router.get('/admin', jsonParser, async(req, res) => {
     try{
         res.json({

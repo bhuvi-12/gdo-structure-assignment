@@ -33,9 +33,11 @@ const { DataTypes } = require("sequelize");
 const Goals = db.sequelize.define(
   "goals",
   {
-    goal_id: {
+    id:{
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
+      allowNull: false
     },
     goal_name: {
       type: DataTypes.STRING,

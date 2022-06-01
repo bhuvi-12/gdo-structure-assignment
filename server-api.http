@@ -1,5 +1,18 @@
-GET http://localhost:3000/goals/employee?id=2
+GET http://localhost:3000/goals/employee?id=4
 
 GET http://localhost:3000/goals/admin?id=2
 
 GET http://localhost:3000/goals/superadmin?id=3
+
+POST http://localhost:3000/goals/employee
+Content-Type: application/json
+
+{
+    "name": "user4",
+    "email": "user4@wal.com",
+    "password": "user4@1113",
+    "mobile": "8789872345",
+    "role": "employee",
+    "createdAt": "2022-06-01",
+    "updatedAt": "2022-06-01"
+}
