@@ -31,12 +31,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      gdo:{
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE
       }
     });
@@ -68,11 +70,9 @@ module.exports = {
         }
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE
       }
     });

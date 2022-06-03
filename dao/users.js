@@ -8,4 +8,13 @@ async function getAllUsers(role){
     });
 }
 
-module.exports = {getAllUsers};
+async function getUserCredentials(email,password){
+    return Users.findAll({
+        where:{
+            email:email,
+            password:password
+        }
+    });
+}
+
+module.exports = {getAllUsers, getUserCredentials};

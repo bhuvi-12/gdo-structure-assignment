@@ -5,10 +5,13 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const goalsRouter = require('./goals');
 const usersRouter = require('./users');
+const authRouter = require('./auth');
 
-app.use('/goals',goalsRouter);
+app.use('/user',goalsRouter);
 
 app.use('/users',usersRouter);
+
+app.use("/",authRouter);
 
 
 app.listen(port, () => {

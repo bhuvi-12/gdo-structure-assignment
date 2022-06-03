@@ -1,8 +1,8 @@
-GET http://localhost:3000/goals/employee?id=1
+GET http://localhost:3000/user/goals?id=1&role=employee
 
-GET http://localhost:3000/goals/admin?id=2
+GET http://localhost:3000/user/goals?id=2&role=admin
 
-GET http://localhost:3000/goals/superadmin?id=3
+GET http://localhost:3000/user/goals?id=3&role=super_admin
 
 POST http://localhost:3000/goals/employee
 Content-Type: application/json
@@ -43,3 +43,11 @@ Content-Type: application/json
 GET http://localhost:3000/users/users?role=employee
 
 GET http://localhost:3000/users/users?role=admin
+
+POST http://localhost:3000/
+Content-Type: application/json
+
+{
+    "email":"user.2@wal.com",
+    "password":"user2@202"
+}
