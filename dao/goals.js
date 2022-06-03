@@ -1,7 +1,9 @@
 const Goals = require("../models/goals");
 const Users = require("../models/users");
+const Op = require("sequelize").Op;
+const sequelize = require("sequelize");
 
-async function getAllGoalsOfUser(id,role) {
+async function getAllGoalsOfUser(id,role,month) {
   Users.belongsTo(Goals, {targetKey:'user_id', foreignKey:'id'});
   return Users.findAll({
     where:{
@@ -11,6 +13,11 @@ async function getAllGoalsOfUser(id,role) {
     include: {
       model: Goals,
       required:true,
+      where: {
+        [Op.and] : [
+           sequelize.fn('EXTRACT(MONTH from "date") =', month)
+        ]
+      }
     },
   });
 }

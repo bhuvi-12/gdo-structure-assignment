@@ -3,6 +3,7 @@ const router = express.Router();
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
 const usersDao = require("./dao/users");
+const users = require("./models/users");
 
 router.get("/users", jsonParser, async (req, res) => {
   try {
@@ -33,8 +34,10 @@ router.post("/users", jsonParser, async (req, res) => {
 
 router.get("/gdo", jsonParser, async (req, res) => {
   try {
+    const id = req.query.id;
+    const aUser = await users.findOne({where:{id}});
     res.json({
-      data: await usersDao.getEmployeesOfAdmin(req.query.id),
+      data: await usersDao.getEmployeesOfAdmin(aUser.gdo, aUser.id),
     });
   } catch (err) {
     res.json({

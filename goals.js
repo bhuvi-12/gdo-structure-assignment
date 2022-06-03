@@ -7,7 +7,7 @@ const goalsDao = require("./dao/goals");
 router.get('/goals', jsonParser, async(req, res) => {
     try{
         res.json({
-            data: await goalsDao.getAllGoalsOfUser(req.query.id,req.query.role),
+            data: await goalsDao.getAllGoalsOfUser(req.query.id,req.query.role,req.query.month),
         });
     } catch(err){
         res.json({

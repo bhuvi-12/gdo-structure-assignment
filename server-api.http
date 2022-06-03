@@ -1,4 +1,4 @@
-GET http://localhost:3000/user/goals?id=1&role=employee
+GET http://localhost:3000/user/goals?id=1&role=employee&month=02
 
 GET http://localhost:3000/user/goals?id=2&role=admin
 
@@ -58,13 +58,13 @@ POST http://localhost:3000/users/users
 Content-Type: application/json
 
 {
-    "name":"user4",
-    "email":"user.4@wal.com",
-    "password":"user4@24",
-    "mobile":"9765478392",
-    "qualification":"MBA",
+    "name":"user6",
+    "email":"user.6@wal.com",
+    "password":"user6@66",
+    "mobile":"9879584745",
+    "qualification":"B.Tech",
     "role":"employee",
-    "gdo":"gdo1",
+    "gdo":"gdo2",
     "createdAt":"2022-06-03",
     "updatedAt":"2022-06-03"
 }

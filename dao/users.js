@@ -18,17 +18,13 @@ async function getUserCredentials(email, password) {
   });
 }
 
-async function getEmployeesOfAdmin(adminId) {
-  Users.belongsTo(Users, { targetKey: "id", foreignKey: "id" });
+async function getEmployeesOfAdmin(gdo,adminId) {
   return Users.findAll({
     where: {
       role: "employee",
+      gdo:gdo,
       id: { [Op.ne]: adminId },
-    },
-    include: {
-      model: Users,
-      required: true,
-    },
+    }
   });
 }
 
