@@ -31,18 +31,6 @@ router.post('/employee', jsonParser, async(req, res) => {
     }
 });
 
-// router.get('/goals', jsonParser, async(req, res) => {
-//     try{
-//         res.json({
-//             data: await goalsDao.getAllGoalsOfAdmin(req.query.id),
-//         });
-//     } catch(err){
-//         res.json({
-//             error: err.toString(),
-//         })
-//     }
-// });
-
 router.post('/admin', jsonParser, async(req, res) => {
     console.log(req.body);
     try{
@@ -57,18 +45,6 @@ router.post('/admin', jsonParser, async(req, res) => {
         })
     }
 });
-
-// router.get('/superadmin', jsonParser, async(req, res) => {
-//     try{
-//         res.json({
-//             data: await goalsDao.getAllGoalsOfSuperAdmin(req.query.id),
-//         });
-//     } catch(err){
-//         res.json({
-//             error: err.toString(),
-//         })
-//     }
-// });
 
 router.post('/superadmin', jsonParser, async(req, res) => {
     console.log(req.body);

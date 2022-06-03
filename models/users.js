@@ -34,6 +34,10 @@ const Users = db.sequelize.define(
       type: DataTypes.STRING,
       allowNull: false
     },
+    gdo:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     createdAt:{
       type: DataTypes.DATE
     },

@@ -51,3 +51,20 @@ Content-Type: application/json
     "email":"user.2@wal.com",
     "password":"user2@202"
 }
+
+GET http://localhost:3000/users/gdo?id=2
+
+POST http://localhost:3000/users/users
+Content-Type: application/json
+
+{
+    "name":"user4",
+    "email":"user.4@wal.com",
+    "password":"user4@24",
+    "mobile":"9765478392",
+    "qualification":"MBA",
+    "role":"employee",
+    "gdo":"gdo1",
+    "createdAt":"2022-06-03",
+    "updatedAt":"2022-06-03"
+}

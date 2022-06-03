@@ -6,7 +6,6 @@ module.exports = {
       "users",
       [
         {
-          id: 1,
           name: "user1",
           email: "user.1@wal.com",
           password: "user1@11",
@@ -18,7 +17,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 2,
           name: "user2",
           email: "user.2@wal.com",
           password: "user2@202",
@@ -30,7 +28,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 3,
           name: "user3",
           email: "user.3@wal.com",
           password: "user3@39993",
@@ -49,7 +46,6 @@ module.exports = {
       "goals",
       [
         {
-          id: 1,
           goal_name: "orm project testing",
           status: "pending",
           date: "2022-03-21",
@@ -58,7 +54,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 2,
           goal_name: "orm project coding",
           status: "completed",
           date: "2022-02-02",
@@ -67,7 +62,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 3,
           goal_name: "orm project review",
           status: "pending",
           date: "2022-03-25",
@@ -76,7 +70,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 4,
           goal_name: "orm project delivery",
           status: "failed",
           date: "2022-03-15",
