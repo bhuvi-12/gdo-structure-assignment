@@ -34,4 +34,10 @@ async function addGoalsofSuperAdmin({goal_name,status,date,user_id,createdAt,upd
   return Goals.create({goal_name,status,date,user_id,createdAt,updatedAt});
 }
 
-module.exports = { getAllGoalsOfUser, addGoalsofEmployee, addGoalsofAdmin, addGoalsofSuperAdmin };
+async function deleteGoal(id){
+  return Goals.destroy({
+    where: { id: id },
+  });
+}
+
+module.exports = { getAllGoalsOfUser, addGoalsofEmployee, addGoalsofAdmin, addGoalsofSuperAdmin, deleteGoal };

@@ -52,9 +52,18 @@ async function addUser({
   });
 }
 
+async function findAdmins(){
+  return Users.findAll({
+    where: {
+      role: "admin",
+    }
+  });
+}
+
 module.exports = {
   getAllUsers,
   getUserCredentials,
   getEmployeesOfAdmin,
   addUser,
+  findAdmins
 };

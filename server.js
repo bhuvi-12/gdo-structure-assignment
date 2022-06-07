@@ -7,7 +7,7 @@ const goalsRouter = require('./goals');
 const usersRouter = require('./users');
 const authRouter = require('./auth');
 
-app.use('/user',goalsRouter);
+app.use('/goals',goalsRouter);
 
 app.use('/users',usersRouter);
 

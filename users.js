@@ -46,4 +46,16 @@ router.get("/gdo", jsonParser, async (req, res) => {
   }
 });
 
+router.get("/admin",async (req,res) => {
+  try{
+    res.json({
+      data: await usersDao.findAdmins(),
+    });
+  }catch(err){
+    res.json({
+      error: err.toString(),
+    });
+  }
+});
+
 module.exports = router;

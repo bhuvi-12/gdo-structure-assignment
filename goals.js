@@ -31,7 +31,7 @@ router.post('/employee-goals', jsonParser, async(req, res) => {
     }
 });
 
-router.post('/admin', jsonParser, async(req, res) => {
+router.post('/admin-goals', jsonParser, async(req, res) => {
     console.log(req.body);
     try{
         const newGoals = await goalsDao.addGoalsofAdmin(req.body)
@@ -46,8 +46,7 @@ router.post('/admin', jsonParser, async(req, res) => {
     }
 });
 
-router.post('/superadmin', jsonParser, async(req, res) => {
-    console.log(req.body);
+router.post('/super_admin-goals', jsonParser, async(req, res) => {
     try{
         const newGoals = await goalsDao.addGoalsofSuperAdmin(req.body)
         res.json({
@@ -60,5 +59,19 @@ router.post('/superadmin', jsonParser, async(req, res) => {
         })
     }
 });
+
+router.delete('/delete', async(req,res) => {
+    console.log(req.query.id);
+    try{
+        await goalsDao.deleteGoal(req.query.id);
+        res.json({
+            message: "goal deleted successfully",
+        })
+    }catch(err){
+        res.json({
+            error: err.toString(),
+        })
+    }
+})
 
 module.exports = router;

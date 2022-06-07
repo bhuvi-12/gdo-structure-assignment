@@ -1,10 +1,10 @@
-GET http://localhost:3030/user/goals?id=1&role=employee&month=03
+GET http://localhost:3030/goals/goals?id=1&role=employee&month=03
 
-GET http://localhost:3000/user/goals?id=2&role=admin&month=03
+GET http://localhost:3000/goals/goals?id=2&role=admin&month=03
 
-GET http://localhost:3000/user/goals?id=3&role=super_admin&month=03
+GET http://localhost:3000/goals/goals?id=3&role=super_admin&month=03
 
-POST http://localhost:3030/user/employee-goals
+POST http://localhost:3030/goals/employee-goals
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
     "updatedAt":"2022-06-06"
 }
 
-POST http://localhost:3000/goals/admin  
+POST http://localhost:3000/goals/admin-goals
 Content-Type: application/json
 
 {
@@ -28,7 +28,7 @@ Content-Type: application/json
     "updatedAt":"2022-06-06"
 }
 
-POST http://localhost:3000/goals/superadmin
+POST http://localhost:3030/goals/super_admin-goals
 Content-Type: application/json
 
 {
@@ -52,7 +52,7 @@ Content-Type: application/json
     "password":"user2@202"
 }
 
-GET http://localhost:3030/users/gdo?id=2
+GET http://localhost:3030/users/gdo?id=5
 
 POST http://localhost:3000/users/users
 Content-Type: application/json
@@ -68,3 +68,7 @@ Content-Type: application/json
     "createdAt":"2022-06-03",
     "updatedAt":"2022-06-03"
 }
+
+GET http://localhost:3030/users/admin
+
+DELETE http://localhost:3030/goals/delete?id=10
