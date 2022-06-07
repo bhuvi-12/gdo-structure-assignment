@@ -1,22 +1,22 @@
-GET http://localhost:3000/user/goals?id=1&role=employee&month=02
+GET http://localhost:3030/user/goals?id=1&role=employee&month=03
 
-GET http://localhost:3000/user/goals?id=2&role=admin
+GET http://localhost:3000/user/goals?id=2&role=admin&month=03
 
-GET http://localhost:3000/user/goals?id=3&role=super_admin
+GET http://localhost:3000/user/goals?id=3&role=super_admin&month=03
 
-POST http://localhost:3000/goals/employee
+POST http://localhost:3030/user/employee-goals
 Content-Type: application/json
 
 {
-    "goal_name": "successful project delivery",
-    "status": "failed",
-    "date": "2022-02-28",
+    "goal_name": "finding the bugs",
+    "status": "completed",
+    "date": "2022-03-29",
     "user_id": 1,
     "createdAt":"2022-06-06",
     "updatedAt":"2022-06-06"
 }
 
-POST http://localhost:3000/goals/admin
+POST http://localhost:3000/goals/admin  
 Content-Type: application/json
 
 {
@@ -44,7 +44,7 @@ GET http://localhost:3000/users/users?role=employee
 
 GET http://localhost:3000/users/users?role=admin
 
-POST http://localhost:3000/
+POST http://localhost:3030/login
 Content-Type: application/json
 
 {
@@ -52,7 +52,7 @@ Content-Type: application/json
     "password":"user2@202"
 }
 
-GET http://localhost:3000/users/gdo?id=2
+GET http://localhost:3030/users/gdo?id=2
 
 POST http://localhost:3000/users/users
 Content-Type: application/json

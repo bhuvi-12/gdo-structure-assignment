@@ -17,7 +17,7 @@ router.post('/', jsonParser, async (req,res) => {
     else{
         payload = {};
         const token = jwt.sign(payload, password);
-        res.json({ jwt: token});
+        res.json({ jwt: token, details: matching});
     }
 });
 

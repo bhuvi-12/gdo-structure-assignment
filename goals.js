@@ -16,7 +16,7 @@ router.get('/goals', jsonParser, async(req, res) => {
     }
 });
 
-router.post('/employee', jsonParser, async(req, res) => {
+router.post('/employee-goals', jsonParser, async(req, res) => {
     console.log(req.body);
     try{
         const newGoals = await goalsDao.addGoalsofEmployee(req.body)
