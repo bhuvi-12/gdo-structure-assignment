@@ -58,9 +58,9 @@ POST http://localhost:3000/users/users
 Content-Type: application/json
 
 {
-    "name":"user6",
-    "email":"user.6@wal.com",
-    "password":"user6@66",
+    "name":"user8",
+    "email":"user.8@wal.com",
+    "password":"user8@89",
     "mobile":"9879584745",
     "qualification":"B.Tech",
     "role":"employee",
@@ -72,3 +72,13 @@ Content-Type: application/json
 GET http://localhost:3030/users/admin
 
 DELETE http://localhost:3030/goals/delete?id=10
+
+PUT http://localhost:3030/goals/update 
+Content-Type: application/json
+
+{
+    "id":7,
+    "goal_name":"fitting the employees",
+    "status":"failed",
+    "updatedAt":"2022-06-08"
+}
