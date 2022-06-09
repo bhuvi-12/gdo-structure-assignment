@@ -48,13 +48,13 @@ POST http://localhost:3030/login
 Content-Type: application/json
 
 {
-    "email":"user.2@wal.com",
-    "password":"user2@202"
+    "email":"bhuvan123@gmail.com",
+    "password":"Bhuvan@123"
 }
 
 GET http://localhost:3030/users/gdo?id=5
 
-POST http://localhost:3000/users/users
+POST http://localhost:3030/users/users
 Content-Type: application/json
 
 {

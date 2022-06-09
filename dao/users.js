@@ -1,5 +1,7 @@
 const Users = require("../models/users");
 const Op = require("sequelize").Op;
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 async function getAllUsers(role) {
   return Users.findAll({
@@ -13,18 +15,17 @@ async function getUserCredentials(email, password) {
   return Users.findAll({
     where: {
       email: email,
-      password: password,
     },
   });
 }
 
-async function getEmployeesOfAdmin(gdo,adminId) {
+async function getEmployeesOfAdmin(gdo, adminId) {
   return Users.findAll({
     where: {
       role: "employee",
-      gdo:gdo,
+      gdo: gdo,
       id: { [Op.ne]: adminId },
-    }
+    },
   });
 }
 
@@ -39,6 +40,8 @@ async function addUser({
   createdAt,
   updatedAt,
 }) {
+  const salt = bcrypt.genSaltSync(saltRounds);
+  password = bcrypt.hashSync(password, salt);
   return Users.create({
     name,
     email,
@@ -52,11 +55,11 @@ async function addUser({
   });
 }
 
-async function findAdmins(){
+async function findAdmins() {
   return Users.findAll({
     where: {
       role: "admin",
-    }
+    },
   });
 }
 
@@ -65,5 +68,5 @@ module.exports = {
   getUserCredentials,
   getEmployeesOfAdmin,
   addUser,
-  findAdmins
+  findAdmins,
 };
