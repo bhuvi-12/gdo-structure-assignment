@@ -12,12 +12,6 @@ router.post("/", jsonParser, async (req, res) => {
 
   const matching = await users.getUserCredentials(email);
 
-//   res.json({
-//       matching:matching,
-//       password:password,
-//   });
-//   console.log(bcrypt.compareSync(password, matching[0].password));
-
   if (
     matching.length == 0 ||
     bcrypt.compareSync(password, matching[0].password) === false

@@ -63,10 +63,20 @@ async function findAdmins() {
   });
 }
 
+async function findGdoPresence(role,gdo) {
+  return Users.findOne({
+    where:{
+      role:role,
+      gdo:gdo
+    }
+  })
+}
+
 module.exports = {
   getAllUsers,
   getUserCredentials,
   getEmployeesOfAdmin,
   addUser,
   findAdmins,
+  findGdoPresence
 };

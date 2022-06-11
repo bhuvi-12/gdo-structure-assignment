@@ -1,8 +1,8 @@
 GET http://localhost:3030/goals/goals?id=1&role=employee&month=03
 
-GET http://localhost:3000/goals/goals?id=2&role=admin&month=03
+GET http://localhost:3030/goals/goals?id=2&role=admin&month=03
 
-GET http://localhost:3000/goals/goals?id=3&role=super_admin&month=03
+GET http://localhost:3030/goals/goals?id=3&role=super_admin&month=03
 
 POST http://localhost:3030/goals/employee-goals
 Content-Type: application/json
@@ -16,7 +16,7 @@ Content-Type: application/json
     "updatedAt":"2022-06-06"
 }
 
-POST http://localhost:3000/goals/admin-goals
+POST http://localhost:3030/goals/admin-goals
 Content-Type: application/json
 
 {
@@ -40,9 +40,9 @@ Content-Type: application/json
     "updatedAt":"2022-06-06"
 }
 
-GET http://localhost:3000/users/users?role=employee
+GET http://localhost:3030/users/users?role=employee
 
-GET http://localhost:3000/users/users?role=admin
+GET http://localhost:3030/users/users?role=admin
 
 POST http://localhost:3030/login
 Content-Type: application/json
@@ -82,3 +82,5 @@ Content-Type: application/json
     "status":"failed",
     "updatedAt":"2022-06-08"
 }
+
+GET http://localhost:3030/users/gdo-admit?role=super_admin&gdo=gdo

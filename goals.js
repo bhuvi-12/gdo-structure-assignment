@@ -63,7 +63,6 @@ router.post("/super_admin-goals", jsonParser, async (req, res) => {
 });
 
 router.put("/update", jsonParser,async (req, res) => {
-  console.log(req.body);
   try {
     await goalsDao.updateGoal(req.body);
     res.json({

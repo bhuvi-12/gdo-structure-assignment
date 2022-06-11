@@ -18,7 +18,6 @@ router.get("/users", jsonParser, async (req, res) => {
 });
 
 router.post("/users", jsonParser, async (req, res) => {
-  console.log(req.body);
   try {
     const newUser = await usersDao.addUser(req.body);
     res.json({
@@ -57,5 +56,17 @@ router.get("/admin",async (req,res) => {
     });
   }
 });
+
+router.get("/gdo-admit",async (req,res) => {
+  try{
+    res.json({
+      data: await usersDao.findGdoPresence(req.query.role, req.query.gdo),
+    });
+  }catch(err){
+    res.json({
+      error: err.toString(),
+    });
+  }
+})
 
 module.exports = router;
