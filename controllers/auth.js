@@ -3,7 +3,7 @@ const router = express.Router();
 var bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 var jsonParser = bodyParser.json();
-const users = require("./dao/users");
+const users = require("../dao/users");
 const bcrypt = require("bcrypt");
 
 router.post("/", jsonParser, async (req, res) => {
@@ -18,8 +18,8 @@ router.post("/", jsonParser, async (req, res) => {
   ) {
     res.status(401).send({ message: "Wrong Credentials" });
   } else {
-    payload = {};
-    const token = jwt.sign(payload, matching[0].password);
+    payload = {email:matching[0].email};
+    const token = jwt.sign(payload, "SecretKey");
     res.json({ jwt: token, details: matching });
   }
 });

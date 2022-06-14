@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
-const usersDao = require("./dao/users");
-const users = require("./models/users");
+const usersDao = require("../dao/users");
+const users = require("../models/users");
+const jwtUtil = require("../jwt/jwtVerify");
 
 router.get("/users", jsonParser, async (req, res) => {
   try {
@@ -31,7 +32,7 @@ router.post("/users", jsonParser, async (req, res) => {
   }
 });
 
-router.get("/gdo", jsonParser, async (req, res) => {
+router.get("/gdo", jwtUtil.checkToken, jsonParser, async (req, res) => {
   try {
     const id = req.query.id;
     const aUser = await users.findOne({where:{id}});
@@ -45,7 +46,7 @@ router.get("/gdo", jsonParser, async (req, res) => {
   }
 });
 
-router.get("/admin",async (req,res) => {
+router.get("/admin", jwtUtil.checkToken, async (req,res) => {
   try{
     res.json({
       data: await usersDao.findAdmins(),
@@ -57,7 +58,7 @@ router.get("/admin",async (req,res) => {
   }
 });
 
-router.get("/gdo-admit",async (req,res) => {
+router.get("/gdo-admit", jwtUtil.checkToken, async (req,res) => {
   try{
     res.json({
       data: await usersDao.findGdoPresence(req.query.role, req.query.gdo),

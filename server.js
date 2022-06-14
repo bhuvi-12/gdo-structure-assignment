@@ -3,9 +3,9 @@ const app = express();
 const port = 3030;
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const goalsRouter = require('./goals');
-const usersRouter = require('./users');
-const authRouter = require('./auth');
+const goalsRouter = require('./controllers/goals');
+const usersRouter = require('./controllers/users');
+const authRouter = require('./controllers/auth');
 
 app.use('/goals',goalsRouter);
 

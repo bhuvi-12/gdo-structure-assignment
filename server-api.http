@@ -3,6 +3,7 @@ GET http://localhost:3030/goals/goals?id=1&role=employee&month=03
 GET http://localhost:3030/goals/goals?id=2&role=admin&month=03
 
 GET http://localhost:3030/goals/goals?id=3&role=super_admin&month=03
+Authorization: Bearer s;kgsdlkgnslidnv
 
 POST http://localhost:3030/goals/employee-goals
 Content-Type: application/json
@@ -70,6 +71,7 @@ Content-Type: application/json
 }
 
 GET http://localhost:3030/users/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJodXZhbjEyM0BnbWFpbC5jb20iLCJpYXQiOjE2NTUxOTEwNjR9.sXTGN_axulf6bLHLdWpRxgK2vg6420N-F-FUZPaqf9E
 
 DELETE http://localhost:3030/goals/delete?id=10
 
