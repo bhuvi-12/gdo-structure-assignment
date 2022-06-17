@@ -11,16 +11,17 @@ router.post("/", jsonParser, async (req, res) => {
   const password = req.body.password;
 
   const matching = await users.getUserCredentials(email);
+  const userGdo = await users.getUserGdo(email);
 
   if (
-    matching.length == 0 ||
-    bcrypt.compareSync(password, matching[0].password) === false
+    matching === null ||
+    bcrypt.compareSync(password, matching.user.password) === false
   ) {
     res.status(401).send({ message: "Wrong Credentials" });
   } else {
-    payload = {email:matching[0].email};
+    payload = {email:matching.user.email};
     const token = jwt.sign(payload, "SecretKey");
-    res.json({ jwt: token, details: matching });
+    res.json({ jwt: token, details: matching, gdo: userGdo.gdo});
   }
 });
 

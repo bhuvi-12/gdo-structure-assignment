@@ -1,16 +1,17 @@
-GET http://localhost:3030/goals/goals?id=1&role=employee&month=03
+GET http://localhost:3030/goals/goals?id=1&month=03&role=employee
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJodXZhbjEyM0BnbWFpbC5jb20iLCJpYXQiOjE2NTUxOTEwNjR9.sXTGN_axulf6bLHLdWpRxgK2vg6420N-F-FUZPaqf9E
 
-GET http://localhost:3030/goals/goals?id=2&role=admin&month=03
+GET http://localhost:3030/goals/goals?id=2&month=03
 
-GET http://localhost:3030/goals/goals?id=3&role=super_admin&month=03
-Authorization: Bearer s;kgsdlkgnslidnv
+GET http://localhost:3030/goals/goals?id=3&month=03
 
 POST http://localhost:3030/goals/employee-goals
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJodXZhbjEyM0BnbWFpbC5jb20iLCJpYXQiOjE2NTUxOTEwNjR9.sXTGN_axulf6bLHLdWpRxgK2vg6420N-F-FUZPaqf9E
 Content-Type: application/json
 
 {
-    "goal_name": "finding the bugs",
-    "status": "completed",
+    "goal_name": "see the document of redux",
+    "status": "pending",
     "date": "2022-03-29",
     "user_id": 1,
     "createdAt":"2022-06-06",
@@ -49,23 +50,85 @@ POST http://localhost:3030/login
 Content-Type: application/json
 
 {
-    "email":"bhuvan123@gmail.com",
-    "password":"Bhuvan@123"
+    "email":"user.1@wal.com",
+    "password":"user8@89"
 }
 
-GET http://localhost:3030/users/gdo?id=5
+GET http://localhost:3030/users/gdo?id=3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJodXZhbjEyM0BnbWFpbC5jb20iLCJpYXQiOjE2NTUxOTEwNjR9.sXTGN_axulf6bLHLdWpRxgK2vg6420N-F-FUZPaqf9E
+
 
 POST http://localhost:3030/users/users
 Content-Type: application/json
 
 {
-    "name":"user8",
-    "email":"user.8@wal.com",
+    "name":"user1",
+    "email":"user.1@wal.com",
     "password":"user8@89",
     "mobile":"9879584745",
     "qualification":"B.Tech",
     "role":"employee",
     "gdo":"gdo2",
+    "createdAt":"2022-06-03",
+    "updatedAt":"2022-06-03"
+}
+
+POST http://localhost:3030/users/users
+Content-Type: application/json
+
+{
+    "name":"user2",
+    "email":"user.2@wal.com",
+    "password":"user987@1",
+    "mobile":"9874551234",
+    "qualification":"B.Tech",
+    "role":"admin",
+    "gdo":"gdo2",
+    "createdAt":"2022-06-03",
+    "updatedAt":"2022-06-03"
+}
+
+POST http://localhost:3030/users/users
+Content-Type: application/json
+
+{
+    "name":"user3",
+    "email":"user.3@wal.com",
+    "password":"user987@1",
+    "mobile":"8932797389",
+    "qualification":"B.Tech",
+    "role":"admin",
+    "gdo":"gdo1",
+    "createdAt":"2022-06-03",
+    "updatedAt":"2022-06-03"
+}
+
+POST http://localhost:3030/users/users
+Content-Type: application/json
+
+{
+    "name":"user4",
+    "email":"user.4@wal.com",
+    "password":"user987@1",
+    "mobile":"9874512345",
+    "qualification":"B.Tech",
+    "role":"employee",
+    "gdo":"gdo1",
+    "createdAt":"2022-06-03",
+    "updatedAt":"2022-06-03"
+}
+
+POST http://localhost:3030/users/users
+Content-Type: application/json
+
+{
+    "name":"user5",
+    "email":"user.5@wal.com",
+    "password":"user987@1",
+    "mobile":"8932797389",
+    "qualification":"B.Tech",
+    "role":"super_admin",
+    "gdo":"gdo",
     "createdAt":"2022-06-03",
     "updatedAt":"2022-06-03"
 }
@@ -85,4 +148,4 @@ Content-Type: application/json
     "updatedAt":"2022-06-08"
 }
 
-GET http://localhost:3030/users/gdo-admit?role=super_admin&gdo=gdo
+GET http://localhost:3030/users/gdo-admit?role=admin&gdo=gdo1

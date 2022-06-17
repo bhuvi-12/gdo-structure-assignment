@@ -1,6 +1,30 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('gdo', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      gdo: {
+        type: Sequelize.STRING,
+        allowNull: false
+      }
+    });
+    await queryInterface.createTable('role', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      role: {
+        type: Sequelize.STRING,
+        allowNull: false
+      }
+    });
     await queryInterface.createTable('users', {
       id: {
         allowNull: false,
@@ -28,12 +52,18 @@ module.exports = {
         type: Sequelize.STRING,
       },
       role: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.INTEGER,
+        references:{
+          model:'role',
+          key:'id'
+        }
       },
       gdo:{
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.INTEGER,
+        references:{
+          model:'gdo',
+          key:'id'
+        }
       },
       createdAt: {
         type: Sequelize.DATE
@@ -51,10 +81,6 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       goal_name: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      status: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -77,9 +103,31 @@ module.exports = {
       }
     });
 
+    await queryInterface.createTable('status', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      goal_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'goals',
+          key: 'id'
+        }
+      },
+      status: {
+       type: Sequelize.STRING,
+       allowNull: false 
+      }
+    });
+
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('goals');
     await queryInterface.dropTable('users');
+    await queryInterface.dropTable('gdo');
+    await queryInterface.dropTable('role');
   }
 };

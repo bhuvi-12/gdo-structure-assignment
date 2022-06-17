@@ -1,13 +1,14 @@
 const Goals = require("../models/goals");
 const Users = require("../models/users");
+const Status = require("../models/status");
 const Op = require("sequelize").Op;
 const sequelize = require("sequelize");
 
-async function getAllGoalsOfUser(id, role, month) {
+async function getAllGoalsOfUser(id, month, role) {
   Users.belongsTo(Goals, { targetKey: "user_id", foreignKey: "id" });
+  Goals.belongsTo(Status, { targetKey: "goal_id", foreignKey: "id" });
   return Users.findAll({
     where: {
-      role: role,
       id: id,
     },
     include: {
@@ -16,6 +17,10 @@ async function getAllGoalsOfUser(id, role, month) {
       where: {
         [Op.and]: [sequelize.fn('EXTRACT(MONTH from "date") =', month)],
       },
+      include: {
+        model: Status,
+        required: true
+      }
     },
   });
 }
@@ -28,14 +33,22 @@ async function addGoalsofEmployee({
   createdAt,
   updatedAt,
 }) {
-  return Goals.create({
+  let newGoal = await Goals.create({
     goal_name,
-    status,
     date,
     user_id,
     createdAt,
     updatedAt,
   });
+
+  goal_id = newGoal.id;
+
+  let newStatus = await Status.create({
+    goal_id,
+    status,
+  });
+
+  return { newGoal, newStatus };
 }
 
 async function addGoalsofAdmin({
@@ -46,14 +59,22 @@ async function addGoalsofAdmin({
   createdAt,
   updatedAt,
 }) {
-  return Goals.create({
+  let newGoal = await Goals.create({
     goal_name,
-    status,
     date,
     user_id,
     createdAt,
     updatedAt,
   });
+
+  goal_id = newGoal.id;
+
+  let newStatus = await Status.create({
+    goal_id,
+    status,
+  });
+
+  return { newGoal, newStatus };
 }
 
 async function addGoalsofSuperAdmin({
@@ -64,32 +85,59 @@ async function addGoalsofSuperAdmin({
   createdAt,
   updatedAt,
 }) {
-  return Goals.create({
+  let newGoal = await Goals.create({
     goal_name,
-    status,
     date,
     user_id,
     createdAt,
     updatedAt,
   });
+
+  goal_id = newGoal.id;
+
+  let newStatus = await Status.create({
+    goal_id,
+    status,
+  });
+
+  return { newGoal, newStatus };
 }
 
 async function deleteGoal(id) {
-  return Goals.destroy({
+  let deletedStatus = Status.destroy({
+    where: { goal_id: id },
+  });
+  let deletedGoal = Goals.destroy({
     where: { id: id },
   });
+  return { deletedStatus, deletedGoal };
 }
 
 async function updateGoal({ id, goal_name, status, updatedAt }) {
-  return Goals.update({
-    goal_name:goal_name,
-    status:status,
-    updatedAt:updatedAt,
-  },{
-    where:{
-      id:id
+  let updatedGoal = Goals.update(
+    {
+      goal_name: goal_name,
+      updatedAt: updatedAt,
+    },
+    {
+      where: {
+        id: id,
+      },
     }
-  });
+  );
+
+  let updatedStatus = Status.update(
+    {
+      status: status,
+    },
+    {
+      where: {
+        goal_id: id,
+      },
+    }
+  );
+
+  return { updatedGoal, updatedStatus };
 }
 
 module.exports = {
@@ -98,5 +146,5 @@ module.exports = {
   addGoalsofAdmin,
   addGoalsofSuperAdmin,
   deleteGoal,
-  updateGoal
+  updateGoal,
 };

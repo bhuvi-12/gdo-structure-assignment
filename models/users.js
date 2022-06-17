@@ -1,5 +1,7 @@
 const db = require("../models/index");
 const { DataTypes } = require("sequelize");
+const Gdo = require("./gdo");
+const Role = require("./role");
 
 const Users = db.sequelize.define(
   "users",
@@ -30,12 +32,18 @@ const Users = db.sequelize.define(
       type: DataTypes.STRING,
     },
     role:{
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.INTEGER,
+      references: {
+        model: Role,
+        key: "id",
+      }
     },
     gdo:{
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.INTEGER,
+      references: {
+        model: Gdo,
+        key: "id",
+      }
     },
     createdAt:{
       type: DataTypes.DATE

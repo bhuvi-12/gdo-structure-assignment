@@ -15,10 +15,6 @@ const Goals = db.sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    status: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     date: {
       type: DataTypes.DATE,
       allowNull: false,

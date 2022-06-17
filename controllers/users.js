@@ -6,7 +6,7 @@ const usersDao = require("../dao/users");
 const users = require("../models/users");
 const jwtUtil = require("../jwt/jwtVerify");
 
-router.get("/users", jsonParser, async (req, res) => {
+router.get("/users", jwtUtil.checkToken, jsonParser, async (req, res) => {
   try {
     res.json({
       data: await usersDao.getAllUsers(req.query.role),
@@ -58,7 +58,7 @@ router.get("/admin", jwtUtil.checkToken, async (req,res) => {
   }
 });
 
-router.get("/gdo-admit", jwtUtil.checkToken, async (req,res) => {
+router.get("/gdo-admit", async (req,res) => {
   try{
     res.json({
       data: await usersDao.findGdoPresence(req.query.role, req.query.gdo),

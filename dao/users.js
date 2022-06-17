@@ -1,30 +1,65 @@
 const Users = require("../models/users");
+const Gdo = require("../models/gdo");
+const Role = require("../models/role");
 const Op = require("sequelize").Op;
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
+Gdo.belongsTo(Users, { targetKey: "gdo", foreignKey: "id" });
+Role.belongsTo(Users, { targetKey: "role", foreignKey: "id" });
+
 async function getAllUsers(role) {
-  return Users.findAll({
+  return Role.findAll({
     where: {
       role: role,
     },
+    include: {
+      model: Users,
+      required: true
+    }
   });
 }
 
-async function getUserCredentials(email, password) {
-  return Users.findAll({
-    where: {
-      email: email,
-    },
+async function getUserCredentials(email) {
+  return Role.findOne({
+    include: [
+      {
+        model: Users,
+        required: true,
+        where: {
+          email: email
+        }
+      },
+    ],
+  });
+}
+
+async function getUserGdo(email) {
+  return Gdo.findOne({
+    include: [
+      {
+        model: Users,
+        required: true,
+        where: {
+          email: email
+        }
+      },
+    ],
   });
 }
 
 async function getEmployeesOfAdmin(gdo, adminId) {
-  return Users.findAll({
+  return Role.findAll({
     where: {
       role: "employee",
-      gdo: gdo,
-      id: { [Op.ne]: adminId },
+    },
+    include: {
+      model: Users,
+      required: true,
+      where: {
+        gdo: gdo,
+        id: { [Op.ne]: adminId },
+      },
     },
   });
 }
@@ -42,6 +77,19 @@ async function addUser({
 }) {
   const salt = bcrypt.genSaltSync(saltRounds);
   password = bcrypt.hashSync(password, salt);
+
+  if (gdo !== "gdo") {
+    var num = gdo.replace(/[^0-9]/g, "");
+    gdo = parseInt(num, 10) + 1;
+  } else {
+    gdo = 1;
+  }
+
+  let roleData = { employee: 1, admin: 2, super_admin: 3 };
+  role = roleData[role];
+
+  console.log(gdo, role);
+
   return Users.create({
     name,
     email,
@@ -56,20 +104,36 @@ async function addUser({
 }
 
 async function findAdmins() {
-  return Users.findAll({
+  return Role.findAll({
     where: {
       role: "admin",
+    },
+    include: {
+      model: Users,
+      required: true,
     },
   });
 }
 
-async function findGdoPresence(role,gdo) {
-  return Users.findOne({
-    where:{
-      role:role,
-      gdo:gdo
-    }
-  })
+async function findGdoPresence(role, gdo) {
+  const gdoSet = await Gdo.findOne({
+    where: {
+      gdo: gdo,
+    },
+  });
+  const roleSet = await Role.findOne({
+    where: {
+      role: role,
+    },
+  });
+  // console.log(gdoSet.id, roleSet.id);
+
+  return Users.findAll({
+    where: {
+      role: roleSet.id,
+      gdo: gdoSet.id,
+    },
+  });
 }
 
 module.exports = {
@@ -78,5 +142,6 @@ module.exports = {
   getEmployeesOfAdmin,
   addUser,
   findAdmins,
-  findGdoPresence
+  findGdoPresence,
+  getUserGdo
 };

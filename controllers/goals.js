@@ -11,8 +11,8 @@ router.get("/goals", jwtUtil.checkToken, jsonParser, async (req, res) => {
     res.json({
       data: await goalsDao.getAllGoalsOfUser(
         req.query.id,
-        req.query.role,
-        req.query.month
+        req.query.month,
+        req.query.role
       ),
     });
   } catch (err) {
