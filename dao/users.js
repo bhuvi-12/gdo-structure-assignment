@@ -8,18 +8,6 @@ const saltRounds = 10;
 Gdo.belongsTo(Users, { targetKey: "gdo", foreignKey: "id" });
 Role.belongsTo(Users, { targetKey: "role", foreignKey: "id" });
 
-async function getAllUsers(role) {
-  return Role.findAll({
-    where: {
-      role: role,
-    },
-    include: {
-      model: Users,
-      required: true
-    }
-  });
-}
-
 async function getUserCredentials(email) {
   return Role.findOne({
     include: [
@@ -88,8 +76,6 @@ async function addUser({
   let roleData = { employee: 1, admin: 2, super_admin: 3 };
   role = roleData[role];
 
-  console.log(gdo, role);
-
   return Users.create({
     name,
     email,
@@ -126,7 +112,6 @@ async function findGdoPresence(role, gdo) {
       role: role,
     },
   });
-  // console.log(gdoSet.id, roleSet.id);
 
   return Users.findAll({
     where: {
@@ -137,7 +122,6 @@ async function findGdoPresence(role, gdo) {
 }
 
 module.exports = {
-  getAllUsers,
   getUserCredentials,
   getEmployeesOfAdmin,
   addUser,

@@ -19,7 +19,7 @@ router.post("/", jsonParser, async (req, res) => {
   ) {
     res.status(401).send({ message: "Wrong Credentials" });
   } else {
-    payload = {email:matching.user.email};
+    payload = {email:matching.user.email, id:matching.user.id, role:matching.role};
     const token = jwt.sign(payload, "SecretKey");
     res.json({ jwt: token, details: matching, gdo: userGdo.gdo});
   }

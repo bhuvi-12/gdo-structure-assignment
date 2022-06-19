@@ -1,9 +1,9 @@
-GET http://localhost:3030/goals/goals?id=1&month=03&role=employee
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJodXZhbjEyM0BnbWFpbC5jb20iLCJpYXQiOjE2NTUxOTEwNjR9.sXTGN_axulf6bLHLdWpRxgK2vg6420N-F-FUZPaqf9E
+GET http://localhost:3030/goals/goals?month=06
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIuMUB3YWwuY29tIiwiaWQiOjEsInJvbGUiOiJlbXBsb3llZSIsImlhdCI6MTY1NTY0Mzg3OH0.eTXuhTQLxyGZTx7qrxf5320OCjWnIL5dksgjOcfeqy4
 
-GET http://localhost:3030/goals/goals?id=2&month=03
+GET http://localhost:3030/goals/goals?month=03
 
-GET http://localhost:3030/goals/goals?id=3&month=03
+GET http://localhost:3030/goals/goals?month=03
 
 POST http://localhost:3030/goals/employee-goals
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJodXZhbjEyM0BnbWFpbC5jb20iLCJpYXQiOjE2NTUxOTEwNjR9.sXTGN_axulf6bLHLdWpRxgK2vg6420N-F-FUZPaqf9E
@@ -42,9 +42,6 @@ Content-Type: application/json
     "updatedAt":"2022-06-06"
 }
 
-GET http://localhost:3030/users/users?role=employee
-
-GET http://localhost:3030/users/users?role=admin
 
 POST http://localhost:3030/login
 Content-Type: application/json
@@ -55,7 +52,7 @@ Content-Type: application/json
 }
 
 GET http://localhost:3030/users/gdo?id=3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJodXZhbjEyM0BnbWFpbC5jb20iLCJpYXQiOjE2NTUxOTEwNjR9.sXTGN_axulf6bLHLdWpRxgK2vg6420N-F-FUZPaqf9E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIuMkB3YWwuY29tIiwiaWQiOjIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY1NTY0NTYyMn0.KeklNoc_SCC9UyPZJvOdMicToa8QJ2UG323OrMLii98
 
 
 POST http://localhost:3030/users/users
@@ -134,11 +131,15 @@ Content-Type: application/json
 }
 
 GET http://localhost:3030/users/admin
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJodXZhbjEyM0BnbWFpbC5jb20iLCJpYXQiOjE2NTUxOTEwNjR9.sXTGN_axulf6bLHLdWpRxgK2vg6420N-F-FUZPaqf9E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIuNUB3YWwuY29tIiwiaWQiOjUsInJvbGUiOiJzdXBlcl9hZG1pbiIsImlhdCI6MTY1NTY0NTc1N30.b_GkgWKKsx9NHyhrMC8xYKYcsuiEgNC2V3541UMkJkg
 
-DELETE http://localhost:3030/goals/delete?id=10
 
-PUT http://localhost:3030/goals/update 
+DELETE http://localhost:3030/goals/delete?id=7&user_id=1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIuNUB3YWwuY29tIiwiaWQiOjUsInJvbGUiOiJzdXBlcl9hZG1pbiIsImlhdCI6MTY1NTY0NTc1N30.b_GkgWKKsx9NHyhrMC8xYKYcsuiEgNC2V3541UMkJkg
+
+
+PUT http://localhost:3030/goals/update?user_id=1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIuMUB3YWwuY29tIiwiaWQiOjEsInJvbGUiOiJlbXBsb3llZSIsImlhdCI6MTY1NTY0NzE2OX0.9zuoyTRXmX3sn1yls7cgzwDO9fz7WUgtjz9l3owdrkI
 Content-Type: application/json
 
 {

@@ -4,7 +4,7 @@ const Status = require("../models/status");
 const Op = require("sequelize").Op;
 const sequelize = require("sequelize");
 
-async function getAllGoalsOfUser(id, month, role) {
+async function getGoalsOfSelfUser(id, month, role) {
   Users.belongsTo(Goals, { targetKey: "user_id", foreignKey: "id" });
   Goals.belongsTo(Status, { targetKey: "goal_id", foreignKey: "id" });
   return Users.findAll({
@@ -141,7 +141,7 @@ async function updateGoal({ id, goal_name, status, updatedAt }) {
 }
 
 module.exports = {
-  getAllGoalsOfUser,
+  getGoalsOfSelfUser,
   addGoalsofEmployee,
   addGoalsofAdmin,
   addGoalsofSuperAdmin,
